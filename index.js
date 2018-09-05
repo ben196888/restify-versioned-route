@@ -41,6 +41,14 @@ server.get('/hello/:name', restify.plugins.conditionalHandler([
   { version: '2.0.0', handler: respondV2 }
 ]));
 
+// /new-hello/:name     v2
+// /v1/new-hello/:name  InvalidVersionError
+// /v2/new-hello/:name  v2
+// /v3/new-hello/:name  InvalidVersionError
+server.get('/new-hello/:name', restify.plugins.conditionalHandler([
+  { version: '2.0.0', handler: respondV2 }
+]));
+
 function statusResponse(req, res, next) {
   res.send('ok');
   next();
