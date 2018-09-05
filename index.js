@@ -26,9 +26,9 @@ function respondV2(req, res, next) {
   next();
 }
 
-// /hello/:name
-// /v1/hello/:name
-// /v2/hello/:name
+// /hello/:name     v2
+// /v1/hello/:name  v1
+// /v2/hello/:name  v2
 server.get('/hello/:name', restify.plugins.conditionalHandler([
   { version: '1.0.0', handler: respondV1 },
   { version: '2.0.0', handler: respondV2 }
